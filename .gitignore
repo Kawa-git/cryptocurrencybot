@@ -1,0 +1,4 @@
+*.token
+*.metals
+*.vscode
+telegrambot_env
