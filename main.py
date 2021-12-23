@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 PORT = int(os.environ.get('PORT', '8443'))
 
 def start(update, context):
-    update.message.reply_text("Welcome!\n\nType \help to start using this bot!")
+    update.message.reply_text("Welcome!\n\nType /help to start using this bot!")
 
 def help(update, context):
     update.message.reply_text("""
