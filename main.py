@@ -2,6 +2,7 @@ import telegram.ext
 import logging
 import pandas_datareader as web
 import time
+import os
 from datetime import datetime
 
 # Enables logging
@@ -12,7 +13,7 @@ logger = logging.getLogger(__name__)
 PORT = int(os.environ.get('PORT', '8443'))
 
 def start(update, context):
-    update.message.reply_text("Welcome!\n\nCurrently this bot works only with BAT")
+    update.message.reply_text("Welcome!\n\nType \help to start using this bot!")
 
 def help(update, context):
     update.message.reply_text("""
@@ -71,13 +72,12 @@ def bat(update, context):
         update.message.reply_text("Cannot print the price.\nFormat is invalid")
 
 def main():
-    with open('api.token', 'r') as f:
-        TOKEN = f.read()
-    APP_NAME = 'https://app-name.herokuapp.com/'
+    TOKEN = os.environ["TOKEN"]
+
+    APP_NAME = 'https://telegramcryptocurrencybot.herokuapp.com/'
     updater = telegram.ext.Updater(TOKEN, use_context=True)
     # Get the dispatcher to register handlers
     disp = updater.dispatcher
-
 
     disp.add_handler(telegram.ext.CommandHandler("start", start))
     disp.add_handler(telegram.ext.CommandHandler("help", help))
